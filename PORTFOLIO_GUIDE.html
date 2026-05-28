@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Guide — ABC</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      padding: 2rem;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.1);
+    }
+
+    /* COVER */
+    .cover {
+      background: linear-gradient(135deg, #0a0a0b 0%, #1a1a2e 100%);
+      color: #fff;
+      padding: 4rem 3rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(124,58,237,0.4), transparent);
+      top: -100px; right: -100px;
+      border-radius: 50%;
+    }
+
+    .cover-tag {
+      display: inline-block;
+      background: rgba(167,139,250,0.2);
+      border: 1px solid rgba(167,139,250,0.4);
+      color: #a78bfa;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .cover h1 span { color: #a78bfa; }
+
+    .cover p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .cover-meta {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      gap: 2rem;
+      position: relative;
+    }
+
+    .cover-meta div { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+    .cover-meta strong { color: rgba(255,255,255,0.9); display: block; font-size: 0.9rem; }
+
+    /* CONTENT */
+    .content { padding: 2.5rem 3rem; }
+
+    /* TOC */
+    .toc {
+      background: #f9f9fb;
+      border: 1px solid #e8e8ec;
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .toc h3 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7c3aed;
+      margin-bottom: 1rem;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .toc li::before {
+      content: counter(toc);
+      min-width: 22px; height: 22px;
+      background: #7c3aed;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    /* SECTIONS */
+    .section { margin-bottom: 2.5rem; }
+
+    .section-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a78bfa;
+      margin-bottom: 0.4rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      color: #111;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid #f0eeff;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #222;
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    p { font-size: 0.9rem; color: #444; line-height: 1.75; margin-bottom: 0.75rem; }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1rem 0; }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: #fafafa;
+      border: 1px solid #ececec;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+
+    .step-num {
+      min-width: 28px; height: 28px;
+      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .step-body { flex: 1; }
+    .step-body strong { display: block; font-size: 0.9rem; color: #111; margin-bottom: 0.2rem; }
+    .step-body span { font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+    /* CODE BLOCKS */
+    pre {
+      background: #0f0f17;
+      color: #e0e0f0;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+      font-family: 'Courier New', monospace;
+    }
+
+    code {
+      background: #f0eeff;
+      color: #7c3aed;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 3px solid #7c3aed;
+      background: #f9f6ff;
+      border-radius: 0 8px 8px 0;
+      padding: 0.9rem 1.2rem;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .callout strong { color: #7c3aed; }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin: 1rem 0;
+    }
+
+    th {
+      background: #f0eeff;
+      color: #7c3aed;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.6rem 1rem;
+      text-align: left;
+    }
+
+    td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid #f0f0f0;
+      color: #444;
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* BADGE */
+    .badge {
+      display: inline-block;
+      background: #f0eeff;
+      color: #7c3aed;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      border: 1px solid #d8cfff;
+    }
+
+    /* DIVIDER */
+    hr { border: none; border-top: 1px solid #f0f0f0; margin: 2rem 0; }
+
+    /* FOOTER */
+    .doc-footer {
+      background: #0a0a0b;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+    }
+
+    .doc-footer strong { color: #a78bfa; }
+
+    /* PRINT */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { box-shadow: none; border-radius: 0; }
+      pre { white-space: pre-wrap; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-tag">Developer Guide</div>
+    <h1>ABC Portfolio<br /><span>Hosting & Running</span><br />Guide</h1>
+    <p>Everything you need to run locally, add your videos, and share a live link with anyone.</p>
+    <div class="cover-meta">
+      <div><strong>Version</strong>React + Vite</div>
+      <div><strong>Also Includes</strong>HTML Version</div>
+      <div><strong>Date</strong>2024</div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- TOC -->
+    <div class="toc">
+      <h3>Contents</h3>
+      <ol>
+        <li>Project Structure</li>
+        <li>Add Your Videos (Cloudinary)</li>
+        <li>Run Locally</li>
+        <li>Share with Anyone — Deploy Online</li>
+        <li>Update Your Info</li>
+        <li>Quick Reference</li>
+      </ol>
+    </div>
+
+    <!-- 1. STRUCTURE -->
+    <div class="section">
+      <div class="section-num">Section 01</div>
+      <h2>Project Structure</h2>
+      <p>There are two versions of the portfolio. Both have the same design — use whichever you prefer.</p>
+
+      <h3>HTML Version <span class="badge">Simple</span></h3>
+      <p>3 files, no installation needed. Open <code>index.html</code> in any browser.</p>
+      <pre>portfolio/
+├── index.html      ← main page
+├── style.css       ← all styling
+└── script.js       ← interactions</pre>
+
+      <h3>React Version <span class="badge">Recommended</span></h3>
+      <p>Component-based. Requires Node.js to run. Easier to update content.</p>
+      <pre>portfolio-react/
+├── index.html
+├── package.json
+├── vite.config.js
+└── src/
+    ├── App.jsx
+    ├── index.css
+    ├── data/
+    │   └── projects.js     ← ADD YOUR VIDEO URLS HERE
+    └── components/
+        ├── Navbar.jsx
+        ├── Hero.jsx
+        ├── Showreel.jsx
+        ├── Work.jsx
+        ├── ProjectCard.jsx
+        ├── VideoModal.jsx
+        ├── About.jsx
+        ├── Contact.jsx
+        └── Footer.jsx</pre>
+    </div>
+
+    <hr />
+
+    <!-- 2. VIDEOS -->
+    <div class="section">
+      <div class="section-num">Section 02</div>
+      <h2>Add Your Videos (Cloudinary)</h2>
+      <p>Videos must be hosted online so anyone with your portfolio link can watch them. Cloudinary is free and works best.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Create a free Cloudinary account</strong>
+            <span>Go to cloudinary.com → Sign up free. No credit card needed.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Upload your video files</strong>
+            <span>Click Upload in the dashboard → select your MP4 files → wait for upload to finish.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Copy the video URL</strong>
+            <span>Click the uploaded video → click the link icon → copy the URL. It looks like:<br />
+            <code>https://res.cloudinary.com/your-name/video/upload/v123/video.mp4</code></span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>Paste URLs into the project</strong>
+            <span>Open <code>src/data/projects.js</code> and replace each placeholder with your real URL.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>React version:</strong> Edit only <code>src/data/projects.js</code> to update all video URLs and project details. No other file needs to change.
+      </div>
+
+      <h3>projects.js — What to edit</h3>
+      <pre>const projects = [
+  {
+    id: 1,
+    title: 'Your Project Title',          // ← change this
+    description: 'Your description',      // ← change this
+    category: 'branding',                 // ← branding / explainer / social / 3d
+    tools: ['After Effects', 'Cinema 4D'],// ← your tools
+    videoUrl: 'https://res.cloudinary.com/YOUR_ACCOUNT/video/upload/your-video.mp4',
+  },
+  // ... repeat for each project
+]</pre>
+    </div>
+
+    <hr />
+
+    <!-- 3. RUN LOCALLY -->
+    <div class="section">
+      <div class="section-num">Section 03</div>
+      <h2>Run Locally</h2>
+
+      <h3>HTML Version — No installation needed</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Open the portfolio folder</strong>
+            <span>Navigate to <code>portfolio/</code> on your computer.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Double-click index.html</strong>
+            <span>It opens in your browser. That's it — no server needed.</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>React Version — Requires Node.js</h3>
+
+      <p><strong>Step 1 — Install Node.js</strong> (only once)</p>
+      <pre># On Ubuntu / Linux
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Verify install
+node --version    # should show v20.x.x
+npm --version     # should show 10.x.x</pre>
+
+      <p><strong>Step 2 — Install dependencies</strong> (only once)</p>
+      <pre>cd /home/pooja/Metaveo/portfolio-react
+npm install</pre>
+
+      <p><strong>Step 3 — Start the dev server</strong></p>
+      <pre>npm run dev</pre>
+
+      <div class="callout">
+        After running <code>npm run dev</code>, open your browser and go to <strong>http://localhost:5173</strong> — your portfolio is running locally. Changes you make to any file update instantly in the browser.
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- 4. DEPLOY -->
+    <div class="section">
+      <div class="section-num">Section 04</div>
+      <h2>Share with Anyone — Deploy Online</h2>
+      <p>Deploying puts your portfolio on the internet so anyone can open it with one link. Both options below are completely free.</p>
+
+      <h3>Option A — Netlify (Easiest, recommended)</h3>
+
+      <p><strong>For the HTML version (no build needed):</strong></p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Go to netlify.com/drop</strong>
+            <span>Open app.netlify.com/drop in your browser.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Drag the portfolio folder</strong>
+            <span>Drag the entire <code>portfolio/</code> folder into the Netlify page.</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Get your link</strong>
+            <span>Netlify gives you a URL like <code>https://bright-sun-abc123.netlify.app</code> — share it!</span>
+          </div>
+        </div>
+      </div>
+
+      <p><strong>For the React version (build first):</strong></p>
+      <pre># Build the project (creates a dist/ folder)
+cd /home/pooja/Metaveo/portfolio-react
+npm run build
+
+# Then drag the dist/ folder to netlify.com/drop</pre>
+
+      <h3>Option B — Vercel</h3>
+      <pre># Install Vercel CLI
+npm install -g vercel
+
+# Deploy from project folder
+cd /home/pooja/Metaveo/portfolio-react
+vercel
+
+# Follow the prompts — you'll get a live URL</pre>
+
+      <div class="callout">
+        <strong>Result:</strong> Your friend receives one link, e.g. <code>https://abc-portfolio.netlify.app</code>. They click it. The portfolio opens in their browser. They see your work, your videos play, everything works. No files to send, no installation for them.
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- 5. UPDATE INFO -->
+    <div class="section">
+      <div class="section-num">Section 05</div>
+      <h2>Update Your Info</h2>
+      <p>Replace the placeholder details with your real information.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>What to change</th>
+            <th>File to edit</th>
+            <th>What to look for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Your email</td>
+            <td><code>Contact.jsx</code>, <code>Footer.jsx</code></td>
+            <td><code>abc@email.com</code></td>
+          </tr>
+          <tr>
+            <td>LinkedIn URL</td>
+            <td><code>Contact.jsx</code>, <code>Footer.jsx</code></td>
+            <td><code>linkedin.com/in/abc</code></td>
+          </tr>
+          <tr>
+            <td>Your name</td>
+            <td><code>Navbar.jsx</code>, <code>Footer.jsx</code>, <code>About.jsx</code></td>
+            <td>Text <code>ABC</code></td>
+          </tr>
+          <tr>
+            <td>Years / project count</td>
+            <td><code>About.jsx</code></td>
+            <td>stats array at top of file</td>
+          </tr>
+          <tr>
+            <td>Skills list</td>
+            <td><code>About.jsx</code></td>
+            <td>skills array at top of file</td>
+          </tr>
+          <tr>
+            <td>Video URLs + project info</td>
+            <td><code>data/projects.js</code></td>
+            <td><code>YOUR_CLOUDINARY_VIDEO</code></td>
+          </tr>
+          <tr>
+            <td>Showreel video</td>
+            <td><code>Showreel.jsx</code></td>
+            <td><code>YOUR_CLOUDINARY_SHOWREEL_URL</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr />
+
+    <!-- 6. QUICK REF -->
+    <div class="section">
+      <div class="section-num">Section 06</div>
+      <h2>Quick Reference</h2>
+
+      <table>
+        <thead>
+          <tr><th>Command</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>npm install</code></td><td>Install all packages (run once)</td></tr>
+          <tr><td><code>npm run dev</code></td><td>Start local server at localhost:5173</td></tr>
+          <tr><td><code>npm run build</code></td><td>Create deployable files in <code>dist/</code></td></tr>
+          <tr><td><code>npm run preview</code></td><td>Preview the built version locally</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout" style="margin-top:1.5rem">
+        <strong>Summary:</strong> Upload videos to Cloudinary → paste URLs into <code>projects.js</code> → run <code>npm run build</code> → drag <code>dist/</code> to Netlify → share the link. Done.
+      </div>
+    </div>
+
+  </div><!-- end content -->
+
+  <div class="doc-footer">
+    <strong>ABC</strong> — Motion Graphic Designer Portfolio &nbsp;·&nbsp; To save as PDF: press <strong>Ctrl+P</strong> → Save as PDF
+  </div>
+
+</div>
+</body>
+</html>
