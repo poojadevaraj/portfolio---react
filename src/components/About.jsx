@@ -17,7 +17,7 @@ export default function About() {
             Motion designer<br />crafting visual<br /><span className="accent">experiences</span>.
           </h2>
           <p>
-            I'm ABC, a motion graphic designer with a passion for creating visuals
+            I'm Binish Babu, a motion graphic designer with a passion for creating visuals
             that don't just look good — they communicate, engage, and convert. I combine
             storytelling with technical skill to deliver animations that serve real business goals.
           </p>
