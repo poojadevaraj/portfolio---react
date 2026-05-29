@@ -1,7 +1,7 @@
 const skills = ['After Effects', 'Cinema 4D', 'Premiere Pro', 'Illustrator', 'Figma', 'Blender']
 
 const stats = [
-  { number: '5+', label: 'Years Experience' },
+  { number: '4+', label: 'Years Experience' },
   { number: '80+', label: 'Projects Delivered' },
   { number: '30+', label: 'Happy Clients' },
   { number: '100%', label: 'Client Satisfaction', accent: true },
